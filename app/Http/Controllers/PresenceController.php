@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-use App\Models\Group;
+use App\Models\Presence;
 use Illuminate\Http\Request;
 
-class GroupController extends Controller
+class PresenceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,14 +21,16 @@ class GroupController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $group = Group::where('user_id', 'LIKE', "%$keyword%")
-                ->orWhere('name', 'LIKE', "%$keyword%")
+            $presence = Presence::where('schedule_id', 'LIKE', "%$keyword%")
+                ->orWhere('student_id', 'LIKE', "%$keyword%")
+                ->orWhere('presence', 'LIKE', "%$keyword%")
+                ->orWhere('note', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $group = Group::latest()->paginate($perPage);
+            $presence = Presence::latest()->paginate($perPage);
         }
 
-        return view('group.index', compact('group'));
+        return view('presence.index', compact('presence'));
     }
 
     /**
@@ -38,7 +40,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        return view('group.create');
+        return view('presence.create');
     }
 
     /**
@@ -53,9 +55,9 @@ class GroupController extends Controller
         
         $requestData = $request->all();
         
-        Group::create($requestData);
+        Presence::create($requestData);
 
-        return redirect('group')->with('success', 'Group added!');
+        return redirect('presence')->with('success', 'Presence added!');
     }
 
     /**
@@ -67,9 +69,9 @@ class GroupController extends Controller
      */
     public function show($id)
     {
-        $group = Group::findOrFail($id);
+        $presence = Presence::findOrFail($id);
 
-        return view('group.show', compact('group'));
+        return view('presence.show', compact('presence'));
     }
 
     /**
@@ -81,9 +83,9 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-        $group = Group::findOrFail($id);
+        $presence = Presence::findOrFail($id);
 
-        return view('group.edit', compact('group'));
+        return view('presence.edit', compact('presence'));
     }
 
     /**
@@ -99,10 +101,10 @@ class GroupController extends Controller
         
         $requestData = $request->all();
         
-        $group = Group::findOrFail($id);
-        $group->update($requestData);
+        $presence = Presence::findOrFail($id);
+        $presence->update($requestData);
 
-        return redirect('/group')->with('success', 'Group updated!');
+        return redirect('presence')->with('success', 'Presence updated!');
     }
 
     /**
@@ -114,8 +116,8 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        Group::destroy($id);
+        Presence::destroy($id);
 
-        return redirect('/group')->with('success', 'Group deleted!');
+        return redirect('presence')->with('success', 'Presence deleted!');
     }
 }

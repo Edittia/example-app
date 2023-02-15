@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
-{    
+{
     /**
      * index
      *
@@ -21,7 +21,7 @@ class PostController extends Controller
         //render view with posts
         return view('posts.index', compact('posts'));
     }
-    
+
     /**
      * create
      *
@@ -61,7 +61,7 @@ class PostController extends Controller
         //redirect to index
         return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
-    
+
     /**
      * edit
      *
@@ -72,7 +72,7 @@ class PostController extends Controller
     {
         return view('posts.edit', compact('post'));
     }
-    
+
     /**
      * update
      *
@@ -97,7 +97,7 @@ class PostController extends Controller
             $image->storeAs('public/posts', $image->hashName());
 
             //delete old image
-            Storage::delete('public/posts/'.$post->image);
+            Storage::delete('public/posts/' . $post->image);
 
             //update post with new image
             $post->update([
@@ -105,7 +105,6 @@ class PostController extends Controller
                 'title'     => $request->title,
                 'content'   => $request->content
             ]);
-
         } else {
 
             //update post without image
@@ -118,7 +117,7 @@ class PostController extends Controller
         //redirect to index
         return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
-/**
+    /**
      * destroy
      *
      * @param  mixed $post
@@ -127,7 +126,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //delete image
-        Storage::delete('public/posts/'. $post->image);
+        Storage::delete('public/posts/' . $post->image);
 
         //delete post
         $post->delete();

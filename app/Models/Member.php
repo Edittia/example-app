@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Group extends Model
+class Member extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'groups';
+    protected $table = 'members';
 
     /**
     * The database primary key value.
@@ -25,11 +25,15 @@ class Group extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'name'];
+    protected $fillable = ['group_id', 'student_id'];
 
-    public function user()
+    public function group()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\Group');
+    }
+    public function student()
+    {
+        return $this->belongsTo('App\Models\Student');
     }
     
 }

@@ -41,14 +41,4 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
-    /**
-     * group
-     *
-     * @return void
-     */
-    public function group()
-    {
-    	return $this->hasOne(Group::class);
-    }
 }

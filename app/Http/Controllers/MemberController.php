@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-use App\Models\Group;
+use App\Models\Member;
 use Illuminate\Http\Request;
 
-class GroupController extends Controller
+class MemberController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,14 +21,14 @@ class GroupController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $group = Group::where('user_id', 'LIKE', "%$keyword%")
-                ->orWhere('name', 'LIKE', "%$keyword%")
+            $member = Member::where('member_id', 'LIKE', "%$keyword%")
+                ->orWhere('student_id', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $group = Group::latest()->paginate($perPage);
+            $member = Member::latest()->paginate($perPage);
         }
 
-        return view('group.index', compact('group'));
+        return view('member.index', compact('member'));
     }
 
     /**
@@ -38,7 +38,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        return view('group.create');
+        return view('member.create');
     }
 
     /**
@@ -53,9 +53,9 @@ class GroupController extends Controller
         
         $requestData = $request->all();
         
-        Group::create($requestData);
+        Member::create($requestData);
 
-        return redirect('group')->with('success', 'Group added!');
+        return redirect('/member')->with('success', 'Member added!');
     }
 
     /**
@@ -67,9 +67,9 @@ class GroupController extends Controller
      */
     public function show($id)
     {
-        $group = Group::findOrFail($id);
+        $member = Member::findOrFail($id);
 
-        return view('group.show', compact('group'));
+        return view('member.show', compact('member'));
     }
 
     /**
@@ -81,9 +81,9 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-        $group = Group::findOrFail($id);
+        $member = Member::findOrFail($id);
 
-        return view('group.edit', compact('group'));
+        return view('member.edit', compact('member'));
     }
 
     /**
@@ -99,10 +99,10 @@ class GroupController extends Controller
         
         $requestData = $request->all();
         
-        $group = Group::findOrFail($id);
-        $group->update($requestData);
+        $member = Member::findOrFail($id);
+        $member->update($requestData);
 
-        return redirect('/group')->with('success', 'Group updated!');
+        return redirect('/member')->with('success', 'Member updated!');
     }
 
     /**
@@ -114,8 +114,8 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        Group::destroy($id);
+        Member::destroy($id);
 
-        return redirect('/group')->with('success', 'Group deleted!');
+        return redirect('/member')->with('success', 'Member deleted!');
     }
 }

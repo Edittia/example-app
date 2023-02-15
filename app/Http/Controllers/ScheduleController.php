@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
-use App\Models\Group;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 
-class GroupController extends Controller
+class ScheduleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,14 +21,17 @@ class GroupController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $group = Group::where('user_id', 'LIKE', "%$keyword%")
-                ->orWhere('name', 'LIKE', "%$keyword%")
+            $schedule = Schedule::where('group_id', 'LIKE', "%$keyword%")
+                ->orWhere('user_id', 'LIKE', "%$keyword%")
+                ->orWhere('note', 'LIKE', "%$keyword%")
+                ->orWhere('time_start_at', 'LIKE', "%$keyword%")
+                ->orWhere('time_end_at', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $group = Group::latest()->paginate($perPage);
+            $schedule = Schedule::latest()->paginate($perPage);
         }
 
-        return view('group.index', compact('group'));
+        return view('schedule.index', compact('schedule'));
     }
 
     /**
@@ -38,7 +41,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        return view('group.create');
+        return view('schedule.create');
     }
 
     /**
@@ -53,9 +56,9 @@ class GroupController extends Controller
         
         $requestData = $request->all();
         
-        Group::create($requestData);
+        Schedule::create($requestData);
 
-        return redirect('group')->with('success', 'Group added!');
+        return redirect('schedule')->with('success', 'schedule added!');
     }
 
     /**
@@ -67,9 +70,9 @@ class GroupController extends Controller
      */
     public function show($id)
     {
-        $group = Group::findOrFail($id);
+        $schedule = Schedule::findOrFail($id);
 
-        return view('group.show', compact('group'));
+        return view('schedule.show', compact('schedule'));
     }
 
     /**
@@ -81,9 +84,9 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-        $group = Group::findOrFail($id);
+        $schedule = Schedule::findOrFail($id);
 
-        return view('group.edit', compact('group'));
+        return view('schedule.edit', compact('schedule'));
     }
 
     /**
@@ -99,10 +102,10 @@ class GroupController extends Controller
         
         $requestData = $request->all();
         
-        $group = Group::findOrFail($id);
-        $group->update($requestData);
+        $schedule = Schedule::findOrFail($id);
+        $schedule->update($requestData);
 
-        return redirect('/group')->with('success', 'Group updated!');
+        return redirect('schedule')->with('success', 'schedule updated!');
     }
 
     /**
@@ -114,8 +117,8 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        Group::destroy($id);
+        Schedule::destroy($id);
 
-        return redirect('/group')->with('success', 'Group deleted!');
+        return redirect('schedule')->with('success', 'schedule deleted!');
     }
 }
