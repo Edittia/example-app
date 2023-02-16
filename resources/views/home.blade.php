@@ -94,7 +94,7 @@
 <body>
 
     <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Company name</a>
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">IDBC</a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
             data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -142,25 +142,25 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('group.index') }}">
-                                <i class="fa-solid fa-user"></i>
+                                <i class="fa-solid fa-users"></i>
                                 Groups
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('member.index') }}">
-                                <i class="fa-solid fa-user"></i>
+                                <i class="fa-solid fa-vcard"></i>
                                 Members
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('schedule.index') }}">
-                                <i class="fa-solid fa-user"></i>
+                                <i class="fa-regular fa-calendar"></i>
                                 Schedules
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('presence.index') }}">
-                                <i class="fa-solid fa-user"></i>
+                                <i class="fa-solid fa-tasks"></i>
                                 Presences
                             </a>
                         </li>
