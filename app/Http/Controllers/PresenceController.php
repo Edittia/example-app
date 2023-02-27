@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 
 use App\Models\Presence;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 
 class PresenceController extends Controller
@@ -52,6 +53,21 @@ class PresenceController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
+        Schedule::create([
+            'group_id'=> $request->group_id,
+            'user_id'=> $request->user_id,
+            'note'=> $request->note,
+        ]);
+        
+        foreach ($request->item as $value) {
+            Presence::create([
+                'schedule'=>$request->note,
+                'student_id'=>$value['student_id'],
+                'presence'=>$value['absensi'],
+                'note'=>$value['note']
+            ]);
+        }
         
         $requestData = $request->all();
         

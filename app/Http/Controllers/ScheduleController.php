@@ -30,8 +30,11 @@ class ScheduleController extends Controller
         } else {
             $schedule = Schedule::latest()->paginate($perPage);
         }
-
-        return view('schedule.index', compact('schedule'));
+        // dd($schedule->sort());
+        return view('schedule.index', [
+            'schedule'=>$schedule->sort(),
+            'sch'=>$schedule
+        ]);
     }
 
     /**

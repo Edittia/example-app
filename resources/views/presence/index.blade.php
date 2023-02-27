@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Presence</div>
                     <div class="card-body">
@@ -12,7 +12,7 @@
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
 
-                        <form method="GET" action="{{ url('/presence') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                        {{-- <form method="GET" action="{{ url('/presence') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
                                 <span class="input-group-append">
@@ -23,15 +23,16 @@
                             </div>
                         </form>
 
-                        <br/>
+                        <br/> --}}
                         <br/>
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Kelas</th>
-                                        <th>Materi</th>
+                                        <th>Mapel</th>
+                                        <th>Nama Siswa</th>
+                                        <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -39,8 +40,9 @@
                                 @foreach($presence as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->schedule->group->name }}</td>
-                                        <td>{{ $item->schedule->note }}</td>
+                                        <td>{{ $item->schedule }}</td>
+                                        <td>{{ $item->student ? $item->student->name:'tidak ada' }}</td>
+                                        <td>{{ $item->presence }}</td>
                                         <td>
                                             <a href="{{ url('/presence/' . $item->id) }}" title="View Presence"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
                                             <a href="{{ url('/presence/' . $item->id . '/edit') }}" title="Edit Presence"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>

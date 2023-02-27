@@ -13,7 +13,7 @@
         <div class="row">
 
 
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Member</div>
                     <div class="card-body">
@@ -21,7 +21,7 @@
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
 
-                        <form method="GET" action="{{ url('/member') }}" accept-charset="UTF-8"
+                        {{-- <form method="GET" action="{{ url('/member') }}" accept-charset="UTF-8"
                             class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-member">
                                 <input type="text" class="form-control" name="search" placeholder="Search..."
@@ -34,10 +34,10 @@
                             </div>
                         </form>
 
-                        <br />
+                        <br /> --}}
                         <br />
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>#</th>

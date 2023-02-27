@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Group extends Model
 {
     /**
@@ -30,6 +31,11 @@ class Group extends Model
     public function user()
     {
         return $this->belongsTo('App\Models\User');
+    }
+
+    public function member()
+    {
+        return $this->hasMany('App\Models\Member');
     }
     
 }

@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 
 class GroupController extends Controller
 {
+    public function attendances($id)
+    {
+        $group = Group::findOrFail($id);
+        return view('group.attendances', compact('group'));
+    }
+
     /**
      * Display a listing of the resource.
      *

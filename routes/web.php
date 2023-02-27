@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\GroupController;
 
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
@@ -13,6 +14,7 @@ Route::middleware(['auth', 'user-access'])->group(function () {
     Route::resource('member', 'App\Http\Controllers\MemberController');
     Route::resource('schedule', 'App\Http\Controllers\ScheduleController');
     Route::resource('presence', 'App\Http\Controllers\PresenceController');
+    Route::get('groups/{id}/attendances', [GroupController::class, 'attendances']); 
 });
 
 

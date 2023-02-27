@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Schedule</div>
                     <div class="card-body">
@@ -20,7 +20,7 @@
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
 
-                        <form method="GET" action="{{ url('/schedule') }}" accept-charset="UTF-8"
+                        {{-- <form method="GET" action="{{ url('/schedule') }}" accept-charset="UTF-8"
                             class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search..."
@@ -33,10 +33,10 @@
                             </div>
                         </form>
 
-                        <br />
+                        <br /> --}}
                         <br />
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -80,7 +80,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="pagination-wrapper"> {!! $schedule->appends(['search' => Request::get('search')])->render() !!} </div>
+                            <div class="pagination-wrapper"> {!! $sch->appends(['search' => Request::get('search')])->render() !!} </div>
                         </div>
 
                     </div>

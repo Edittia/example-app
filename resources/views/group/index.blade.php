@@ -11,7 +11,7 @@
         <div class="row">
 
 
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Group</div>
                     <div class="card-body">
@@ -19,7 +19,7 @@
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
 
-                        <form method="GET" action="{{ url('/group') }}" accept-charset="UTF-8"
+                        {{-- <form method="GET" action="{{ url('/group') }}" accept-charset="UTF-8"
                             class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search..."
@@ -30,12 +30,12 @@
                                     </button>
                                 </span>
                             </div>
-                        </form>
+                        </form> --}}
 
                         <br />
                         <br />
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -48,9 +48,16 @@
                                     @foreach ($group as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->user->name }}</td>
+                                            <td>{{ $item->user ? $item->user->name : '' }}</td>
                                             <td>{{ $item->name }}</td>
                                             <td>
+                                                <a href="{{ url('/groups/' . $item->id . '/attendances') }}"
+                                                    title="View Group">
+                                                    <button class="btn btn-info btn-sm">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i> Absensi
+                                                    </button>
+                                                </a>
+
                                                 <a href="{{ url('/group/' . $item->id) }}" title="View Group"><button
                                                         class="btn btn-info btn-sm"><i class="fa fa-eye"
                                                             aria-hidden="true"></i> View</button></a>
