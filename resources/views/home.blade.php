@@ -164,6 +164,12 @@
                                 Presences
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('quiz.index') }}">
+                                <i class="fa-solid fa-tasks"></i>
+                                Quizz
+                            </a>
+                        </li>
                     </ul>
 
                     <h6

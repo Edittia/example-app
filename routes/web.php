@@ -15,8 +15,11 @@ Route::middleware(['auth', 'user-access'])->group(function () {
     Route::resource('schedule', 'App\Http\Controllers\ScheduleController');
     Route::resource('presence', 'App\Http\Controllers\PresenceController');
     Route::get('groups/{id}/attendances', [GroupController::class, 'attendances']); 
+    Route::resource('quiz', 'App\Http\Controllers\QuizController');
 });
 
 
 
 Auth::routes();
+
+Route::resource('question', 'App\Http\Controllers\QuestionController');

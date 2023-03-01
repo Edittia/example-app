@@ -1,0 +1,125 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests;
+
+use App\Models\Question;
+use Illuminate\Http\Request;
+
+class QuestionController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function index(Request $request)
+    {
+        $keyword = $request->get('search');
+        $perPage = 25;
+
+        if (!empty($keyword)) {
+            $question = Question::where('number', 'LIKE', "%$keyword%")
+                ->orWhere('text', 'LIKE', "%$keyword%")
+                ->orWhere('answer1', 'LIKE', "%$keyword%")
+                ->orWhere('answer2', 'LIKE', "%$keyword%")
+                ->orWhere('answer3', 'LIKE', "%$keyword%")
+                ->orWhere('answer4', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+        } else {
+            $question = Question::latest()->paginate($perPage);
+        }
+
+        return view('question.index', compact('question'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function create()
+    {
+        return view('question.question.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function store(Request $request)
+    {
+        
+        $requestData = $request->all();
+        
+        Question::create($requestData);
+
+        return redirect('question/question')->with('flash_message', 'Question added!');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     *
+     * @return \Illuminate\View\View
+     */
+    public function show($id)
+    {
+        $question = Question::findOrFail($id);
+
+        return view('question.question.show', compact('question'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     *
+     * @return \Illuminate\View\View
+     */
+    public function edit($id)
+    {
+        $question = Question::findOrFail($id);
+
+        return view('question.question.edit', compact('question'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param  int  $id
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function update(Request $request, $id)
+    {
+        
+        $requestData = $request->all();
+        
+        $question = Question::findOrFail($id);
+        $question->update($requestData);
+
+        return redirect('question/question')->with('flash_message', 'Question updated!');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function destroy($id)
+    {
+        Question::destroy($id);
+
+        return redirect('question/question')->with('flash_message', 'Question deleted!');
+    }
+}
