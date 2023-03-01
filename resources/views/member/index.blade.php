@@ -32,9 +32,9 @@
                                     </button>
                                 </span>
                             </div>
-                        </form>
+                        </form> --}}
 
-                        <br /> --}}
+                        <br />
                         <br />
                         <div class="table-responsive">
                             <table class="table table-bordered">

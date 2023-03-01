@@ -8,8 +8,8 @@
                     <div class="card-header">Group {{ $group->id }}</div>
                     <div class="card-body">
 
-                        <a href="{{ url('/group') }}" title="Back"><button class="btn btn-warning btn-sm"><i
-                                    class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/group') }}" title="Back"><button class="btn btn-warning btn-sm">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
 
                         <div class="table-responsive">
                             <table class="table">
@@ -65,31 +65,31 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
                                                     {{ $item->student->name }}
-                                                    <input type="hidden" name="item[{{ $loop->iteration }}][student_id]"
-                                                        value="{{ $item->student_id }}">
+                                                    <input type="hidden" name="item[{{ $loop->iteration }}] 
+                                                    [student_id]" value="{{ $item->student_id }}">
                                                 </td>
                                                 <td>
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="item[{{ $loop->iteration }}][absensi]"
-                                                            value="Hadir" checked> Hadir
+                                                        <input type="radio" name="item[{{ $loop->iteration }}]  
+                                                        [absensi]" value="Hadir" checked> Hadir
                                                     </label>
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="item[{{ $loop->iteration }}][absensi]"
-                                                            value="Sakit"> Sakit
+                                                        <input type="radio" name="item[{{ $loop->iteration }}] 
+                                                        [absensi]" value="Sakit"> Sakit
                                                     </label>
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="item[{{ $loop->iteration }}][absensi]"
-                                                            value="Izin"> Izin
+                                                        <input type="radio" name="item[{{ $loop->iteration }}] 
+                                                        [absensi]" value="Izin"> Izin
                                                     </label>
                                                     <label class="radio-inline">
-                                                        <input type="radio" name="item[{{ $loop->iteration }}][absensi]"
-                                                            value="Alpha"> Alpha
+                                                        <input type="radio" name="item[{{ $loop->iteration }}] 
+                                                        [absensi]" value="Alpha"> Alpha
                                                     </label>
                                                 </td>
 
                                                 <td>
-                                                    <input type="text" class="form-control"
-                                                        name="item[{{ $loop->iteration }}][note]">
+                                                    <input type="text" class="form-control" 
+                                                    name="item[{{ $loop->iteration }}][note]">
                                                 </td>
                                             </tr>
                                         @endforeach
