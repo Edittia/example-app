@@ -66,7 +66,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a href="{{ url('/member' . $item->id) }}" title="View Member"><button
+                                                <a href="{{ url('/member/' . $item->id) }}" title="View Member"><button
                                                         class="btn btn-info btn-sm"><i class="fa fa-eye"
                                                             aria-hidden="true"></i> View</button></a>
                                                 <a href="{{ url('/member/' . $item->id . '/edit') }}"

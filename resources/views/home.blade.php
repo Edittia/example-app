@@ -170,6 +170,12 @@
                                 Quizz
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('question.index') }}">
+                                <i class="fa-solid fa-tasks"></i>
+                                Question
+                            </a>
+                        </li>
                     </ul>
 
                     <h6

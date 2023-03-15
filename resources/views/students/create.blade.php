@@ -47,6 +47,19 @@
                             </div>
 
                             <div class="form-group">
+                                <label class="font-weight-bold">password</label>
+                                <input type="text" class="form-control @error('password') is-invalid @enderror"
+                                    name="password" value="{{ old('password') }}" placeholder="Masukkan Nama">
+
+                                <!-- error message untuk password -->
+                                @error('password')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
                                 <label class="font-weight-bold">Photo</label>
                                 <input type="file" class="form-control @error('photo') is-invalid @enderror"
                                     name="photo">

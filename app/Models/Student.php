@@ -16,9 +16,14 @@ class Student extends Model
      */
     protected $fillable = [
         'number',
-        'name',
+        'user_id',
+        'password',
         'photo',
         'email',
         'phone'
     ];
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

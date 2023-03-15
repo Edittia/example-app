@@ -3,13 +3,13 @@
 @section('content')
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
 
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">Edit Question #{{ $question->id }}</div>
                     <div class="card-body">
-                        <a href="{{ url('/question/question') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/question') }}" title="Back"><button class="btn btn-warning btn-sm"><i
+                                    class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -21,11 +21,12 @@
                             </ul>
                         @endif
 
-                        <form method="POST" action="{{ url('/question/question/' . $question->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+                        <form method="POST" action="{{ url('/question/' . $question->id) }}" accept-charset="UTF-8"
+                            class="form-horizontal" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             {{ csrf_field() }}
 
-                            @include ('question.question.form', ['formMode' => 'edit'])
+                            @include ('question.form', ['formMode' => 'edit'])
 
                         </form>
 

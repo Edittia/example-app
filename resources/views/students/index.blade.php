@@ -34,7 +34,7 @@
                                     @forelse ($students as $data)
                                         <tr>
                                             <td>{{ $data->number }}</td>
-                                            <td>{{ $data->name }}</td>
+                                            <td>{{ $data->user->name }}</td>
                                             <td class="text-center">
                                                 <img src="{{ Storage::url('public/students/') . $data->photo }}"
                                                     class="rounded" style="width: 150px">

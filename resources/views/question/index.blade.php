@@ -1,19 +1,18 @@
-@extends('layouts.app')
+@extends('home')
 
 @section('content')
     <div class="container">
         <div class="row">
 
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Question</div>
                     <div class="card-body">
-                        <a href="{{ url('/question/question/create') }}" class="btn btn-success btn-sm"
-                            title="Add New Question">
+                        <a href="{{ url('/question/create') }}" class="btn btn-success btn-sm" title="Add New Question">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
 
-                        <form method="GET" action="{{ url('/question/question') }}" accept-charset="UTF-8"
+                        {{-- <form method="GET" action="{{ url('/question') }}" accept-charset="UTF-8"
                             class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search..."
@@ -24,12 +23,12 @@
                                     </button>
                                 </span>
                             </div>
-                        </form>
+                        </form> --}}
 
                         <br />
                         <br />
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -43,52 +42,17 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item->text }}</td>
+                                            <td>{{ $item->key_answer }}</td>
                                             <td>
-                                                {{-- answer 1 --}}
-                                                <div>
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                        id="flexRadioDefault1">
-                                                    <label class="form-check-label" for="flexRadioDefault1">
-                                                        {{ $item->answer1 }}<br>
-                                                    </label>
-                                                </div>
-                                                {{-- answer 2 --}}
-                                                <div>
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                        id="flexRadioDefault1">
-                                                    <label class="form-check-label" for="flexRadioDefault1">
-                                                        {{ $item->answer2 }}<br>
-                                                    </label>
-                                                </div>
-                                                {{-- answer 3 --}}
-                                                <div>
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                        id="flexRadioDefault1">
-                                                    <label class="form-check-label" for="flexRadioDefault1">
-                                                        {{ $item->answer3 }}<br>
-                                                    </label>
-                                                </div>
-                                                {{-- answer 4 --}}
-                                                <div>
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                                        id="flexRadioDefault1">
-                                                    <label class="form-check-label" for="flexRadioDefault1">
-                                                        {{ $item->answer4 }}
-                                                    </label>
-                                                </div>
-
-                                            </td>
-                                            <td>
-                                                <a href="{{ url('/question/question/' . $item->id) }}"
-                                                    title="View Question"><button class="btn btn-info btn-sm"><i
-                                                            class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                                <a href="{{ url('/question/question/' . $item->id . '/edit') }}"
+                                                <a href="{{ url('/question/' . $item->id) }}" title="View Question"><button
+                                                        class="btn btn-info btn-sm"><i class="fa fa-eye"
+                                                            aria-hidden="true"></i> View</button></a>
+                                                <a href="{{ url('/question/' . $item->id . '/edit') }}"
                                                     title="Edit Question"><button class="btn btn-primary btn-sm"><i
                                                             class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                         Edit</button></a>
 
-                                                <form method="POST"
-                                                    action="{{ url('/question/question' . '/' . $item->id) }}"
+                                                <form method="POST" action="{{ url('/question' . '/' . $item->id) }}"
                                                     accept-charset="UTF-8" style="display:inline">
                                                     {{ method_field('DELETE') }}
                                                     {{ csrf_field() }}

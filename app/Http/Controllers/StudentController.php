@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
@@ -41,22 +43,31 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         //validate form
-        $request->validate([
-            'number'     => 'required|max:5',
-            'name'       => 'required|max:30',
-            'photo'      => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'email'      => 'required|min:10',
-            'phone'      => 'required|max:13'
-        ]);
+        // $request->validate([
+        //     'number'     => 'required|max:5',
+        //     'user_id'    => 'required|max:30',
+        //     'password'   => 'required|min:8',
+        //     'photo'      => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        //     'email'      => 'required|min:10',
+        //     'phone'      => 'required|max:13'
+        // ]);
 
         //upload photo
         $photo = $request->file('photo');
         $photo->storeAs('public/students', $photo->hashName());
 
+        $user = User::create([
+            'name'      => $request->name,
+            'email'     => $request->email,
+            'role'      => 'student',
+            'password'  => Hash::make($request->password),
+        ]);
+
         //create Student
         Student::create([
             'number'     => $request->number,
-            'name'       => $request->name,
+            'user_id'    => $user->id,
+            'password'   => $request->password,
             'photo'      => $photo->hashName(),
             'email'      => $request->email,
             'phone'      => $request->phone
@@ -88,7 +99,8 @@ class StudentController extends Controller
         //validate form
         $request->validate([
             'number'     => 'required|max:5',
-            'name'       => 'required|max:30',
+            'user_id'    => 'required|max:30',
+            'password'   => 'required|min:8',
             'photo'      => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'email'      => 'required|min:10',
             'phone'      => 'required|max:13'
@@ -107,7 +119,8 @@ class StudentController extends Controller
             //update student with new photo
             $student->update([
                 'number'     => $request->number,
-                'name'       => $request->name,
+                'user_id'    => $request->name,
+                'password'   => $request->password,
                 'photo'      => $photo->hashName(),
                 'email'      => $request->email,
                 'phone'      => $request->phone
@@ -117,7 +130,8 @@ class StudentController extends Controller
             //update student without image
             $student->update([
                 'number'     => $request->number,
-                'name'       => $request->name,
+                'user_id'    => $request->name,
+                'password'   => $request->password,
                 'email'      => $request->email,
                 'phone'      => $request->phone
             ]);

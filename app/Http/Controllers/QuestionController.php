@@ -42,7 +42,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        return view('question.question.create');
+        return view('question.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class QuestionController extends Controller
         
         Question::create($requestData);
 
-        return redirect('question/question')->with('flash_message', 'Question added!');
+        return redirect('question')->with('flash_message', 'Question added!');
     }
 
     /**
@@ -73,7 +73,7 @@ class QuestionController extends Controller
     {
         $question = Question::findOrFail($id);
 
-        return view('question.question.show', compact('question'));
+        return view('question.show', compact('question'));
     }
 
     /**
@@ -87,7 +87,7 @@ class QuestionController extends Controller
     {
         $question = Question::findOrFail($id);
 
-        return view('question.question.edit', compact('question'));
+        return view('question.edit', compact('question'));
     }
 
     /**
@@ -106,7 +106,7 @@ class QuestionController extends Controller
         $question = Question::findOrFail($id);
         $question->update($requestData);
 
-        return redirect('question/question')->with('flash_message', 'Question updated!');
+        return redirect('question')->with('flash_message', 'Question updated!');
     }
 
     /**
@@ -120,6 +120,6 @@ class QuestionController extends Controller
     {
         Question::destroy($id);
 
-        return redirect('question/question')->with('flash_message', 'Question deleted!');
+        return redirect('question')->with('flash_message', 'Question deleted!');
     }
 }
